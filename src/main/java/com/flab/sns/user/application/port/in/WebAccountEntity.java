@@ -8,43 +8,8 @@ import java.util.Date;
 
 public class WebAccountEntity extends AccountState {
 
-    private WebAccountEntity() {
-    }
-
-    public String getId() {
-        return Id;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public Date getBirth() {
-        return birth;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public String getLocation() {
-        return location;
+    private WebAccountEntity(String Id, String password, String firstName, String lastName, String phone, String email, Date birth, Gender gender, String location) {
+        super(Id, password, firstName, lastName, phone, email, birth, gender, location);
     }
 
     public static WebAccountEntity buildWebAccountModel(String Id,
@@ -56,12 +21,10 @@ public class WebAccountEntity extends AccountState {
                                                         Date birth,
                                                         Account.Gender gender,
                                                         String location) {
-        AccountState<Account> model = new WebAccountEntity().buildAccount(Id, password, firstName, lastName, phone, email, birth, gender, location);
-        return (WebAccountEntity) model;
+       return new WebAccountEntity(Id, password, firstName, lastName, phone, email, birth, gender, location);
     }
 
     public static WebAccountEntity buildSignInModel(String Id, String password) {
-        AccountState<WebAccountEntity> model = new WebAccountEntity().buildAccount(Id, password, null, null, null, null, null, null, null);
-        return (WebAccountEntity) model;
+        return new WebAccountEntity(Id, password, null, null, null, null, null, null, null);
     }
 }
